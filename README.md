@@ -36,4 +36,4 @@ Last updated: 31.07.2025
 
 Last Update : Implemented inputMarks function with input validation and comments (31.07.2025-9.00AM)
 
-Last Update: Implemented displayTotalAndAverage with input validation and comments (31.07.2025-10.25AM)
+Last Update: Implemented displayTotalAndAverage function with input validation and comments (31.07.2025-10.25AM)
