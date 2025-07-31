@@ -32,6 +32,7 @@ int main()
         inputMarks(); //Call to function input marks
 
     case 2:
+        displayTotalAndAverage(); //Call to function total and average
     case 3:
     case 4:
     case 5:
@@ -73,6 +74,24 @@ int inputMarks()
 
 
 }
+    return 0;
+}
+int displayTotalAndAverage(){
+    int i;
+    int total=0;
+    float average=0;
+
+    // Loop through all entered marks to calculate total
+    for(i=0;i<size;i++){
+        total+=arr[i];
+    }
+    // Calculate average by dividing total by number of marks
+    average=(float)total/size; //Cast to float for decimal precision
+
+
+    printf("Total:%d\n",total);
+    printf("Average:%.2f\n",average);
+
     return 0;
 }
 
