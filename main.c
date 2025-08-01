@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h> // Needed for sqrt() function
+
 //Global Variables
 int arr[100]; //Array to store up to 100 student scores
 int size; //Variable to store the number of students
 
 int inputMarks(); //Function to input student marks
+int displayTotalAndAverage(); //Function to display total and average
+int displayHighestAndLowest(); //Function to display highest and lowest mark
+int displayMedian(); //Function to display median
+int displayStandardDeviation(); //Function to display standard deviation
+
 
 int main()
 {
@@ -30,23 +37,36 @@ int main()
     switch(choice){
     case 1:
         inputMarks(); //Call to function input marks
+        break;
 
     case 2:
-        displayTotalAndAverage(); //Call to function total and average
+        displayTotalAndAverage(); //Call to function  display total and average
+        break;
+
     case 3:
+        displayHighestAndLowest(); //Call to function display highest and lowest mark
+        break;
+
     case 4:
+        displayMedian(); //Call to function display median
+        break;
+
     case 5:
+        displayStandardDeviation(); //Call to function display standard deviation
+        break;
+
     case 6:
     case 7:
 
 
 
     }
+    }
 
 
     return 0;
 }
-}
+
 int inputMarks()
 {
     int i;
@@ -94,4 +114,87 @@ int displayTotalAndAverage(){
 
     return 0;
 }
+int displayHighestAndLowest(){
+    int i;
+    int maximum=arr[0];
+    int minimum=arr[0];
+
+    for(i=1;i<size;i++){
+        if(arr[i]>maximum){
+            maximum=arr[i];
+        }
+        if(arr[i]<minimum){
+            minimum=arr[i];
+        }
+    }
+    printf("Highest mark is:%d\n",maximum);
+    printf("Lowest mark is:%d\n",minimum);
+
+    return 0;
+}
+void sortArray(int a[], int n) {
+    for (int i=0; i<n-1;i++) {
+        for (int j=0; j<n-1-i;j++) {
+            if (a[j]>a[j+1]) {
+
+                int temp=a[j];
+                a[j]=a[j+1];
+                a[j+1]=temp;
+            }
+        }
+    }
+}
+int displayMedian() {
+    if (size==0) {
+        printf("No marks entered yet!\n");
+        return 0;
+    }
+
+    int temp[100]; // Temporary array to hold copy of marks
+    for (int i=0; i<size;i++) {
+        temp[i]=arr[i];
+    }
+
+    sortArray(temp,size); // Sort the copied array
+
+    float median;
+    if (size % 2 == 0) {
+        // Even number of elements
+        median = (temp[size/2-1] + temp[size/2]) / 2.0;
+    } else {
+        // Odd number of elements
+        median = temp[size/2];
+    }
+
+    printf("Median: %.2f\n", median);
+
+    return 0;
+}
+int displayStandardDeviation() {
+    if (size==0) {
+        printf("No marks entered yet!\n");
+        return 0;
+    }
+
+    float sum=0;
+    float mean;
+    float standardDev=0;
+
+    for (int i=0; i<size;i++) { // Calculate total sum
+        sum+=arr[i];
+    }
+
+    mean = sum/size;  // Calculate total sum
+
+    for (int i=0;i<size;i++) {
+        standardDev += (arr[i]-mean)*(arr[i]-mean);
+    }
+
+    standardDev=sqrt(standardDev/size); //Calculate standard Deviation
+
+    printf("Standard Deviation: %.2f\n", standardDev);
+    return 0;
+}
+
+
 
