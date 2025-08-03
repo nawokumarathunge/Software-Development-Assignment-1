@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1754062027 source:d:\education\programming\software development assignment 1\main.c
+1754213131 source:d:\education\programming\software development assignment 1\main.c
 	<stdio.h>
 	<stdlib.h>
+	<math.h>
 

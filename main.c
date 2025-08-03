@@ -11,6 +11,9 @@ int displayTotalAndAverage(); //Function to display total and average
 int displayHighestAndLowest(); //Function to display highest and lowest mark
 int displayMedian(); //Function to display median
 int displayStandardDeviation(); //Function to display standard deviation
+int showGrades(); //Function to show Grades
+int displayGradeBarGraph(); //Function to display ASCII bar
+int displayPrediction(); //Function to display Prediction
 
 
 int main()
@@ -27,7 +30,8 @@ int main()
     printf("4.Display median\n");
     printf("5.Display standard deviation\n");
     printf("6.Show grades\n");
-    printf("7.Exit\n\n");
+    printf("7.Display Prediction\n");
+    printf("8.Exit\n\n");
 
     //Get user's choice
     printf("Enter your choice(1-7):");
@@ -56,11 +60,20 @@ int main()
         break;
 
     case 6:
+        showGrades();
+        displayGradeBarGraph();
+        break;
     case 7:
+        displayPrediction();
 
+    case 8:
+        printf("Thank you for using Student score analyzer!.Exit\n");
+        break;
 
-
-    }
+    default:
+        printf("Invalid choice! Please enter a number between (1-8)\n");
+        break;
+        }
     }
 
 
@@ -195,6 +208,121 @@ int displayStandardDeviation() {
     printf("Standard Deviation: %.2f\n", standardDev);
     return 0;
 }
+int showGrades(){
+    int i;
+    if(size==0){
+        printf("No marks Entered\n");
+        return 0;
+    }
+    printf("\n-----STUDENT GRADES-----\n");
+    printf("Student\tMark\tGrade\n");
+
+    for(i=0;i<size;i++){
+        char grade;
+
+
+        if(arr[i]>=75){ //Determine grades based on marks
+            grade='A';
+        }else if(arr[i]>=65){
+            grade='B';
+        }else if(arr[i]>=50){
+            grade='C';
+        }else if(arr[i]>=35){
+            grade='S';
+        }else{
+            grade='F';
+        }
+
+        printf(" %d\t%d\t%c\n",i+1,arr[i],grade);
+    }
+    return 0;
+}
+
+int displayGradeBarGraph(){
+        int i;
+
+        int gradeA=0;
+        int gradeB=0;
+        int gradeC=0;
+        int gradeS=0;
+        int gradeF=0;
+
+        for(i=0;i<size;i++){
+          if(arr[i]>=75){ //Count Grades
+            gradeA++;
+        }else if(arr[i]>=65){
+            gradeB++;
+        }else if(arr[i]>=50){
+            gradeC++;
+        }else if(arr[i]>=35){
+            gradeS++;
+        }else{
+            gradeF++;
+        }
+
+        }
+
+        printf("\n-----GRADE ASCII BAR GRAPH-----'\n");
+        printf("Grade|Count|Bar Graph\n");
+
+        //Display Grade A
+        printf("  A  | %2d  |",gradeA);
+        for(i=0;i<gradeA;i++){
+            printf("*");
+        }
+        printf(" (%d students)\n",gradeA);
+
+        //Display Grade B
+        printf("  B  | %2d  |",gradeB);
+        for(i=0;i<gradeB;i++){
+            printf("*");
+        }
+        printf(" (%d students)\n",gradeB);
+
+        //Display Grade C
+        printf("  C  | %2d  |",gradeC);
+        for(i=0;i<gradeC;i++){
+            printf("*");
+        }
+        printf(" (%d students)\n",gradeC);
+
+        //Display Grade S
+        printf("  S  | %2d  |",gradeS);
+        for(i=0;i<gradeS;i++){
+            printf("*");
+        }
+        printf(" (%d students)\n",gradeS);
+
+        //Display Grade F
+        printf("  F  | %2d  |",gradeF);
+        for(i=0;i<gradeF;i++){
+            printf("*");
+        }
+        printf(" (%d students)\n",gradeF);
+
+        printf("\nTotal Students:%d\n",size);
+
+        return 0;
+
+
+    }
+int displayPrediction(){
+
+    float prediction;
+       // Check if there are at least 3 marks entered for prediction
+        if(size<3){
+            printf("You must have a minimum of three previous scores to make a prediction\n");
+            return 0;
+    }
+    prediction=(arr[size-1]+arr[size-2]+arr[size-3])/3; //Calculate Prediction
+
+    printf("Prediction:%.2f\n",prediction);
+
+    return 0;
+}
+
+
+
 
 
 
